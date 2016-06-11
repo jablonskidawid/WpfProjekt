@@ -5,8 +5,54 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfProjekt"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="450" Width="525">
     <Grid>
-        
+        <TabControl>
+            <TabItem Header="Dodaj nową osobę">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <Label HorizontalAlignment="Right" Margin="5">Imię</Label>
+                        <Label HorizontalAlignment="Right" Margin="5">Nazwisko</Label>
+                        <Label HorizontalAlignment="Right" Margin="5,5,5,55">Telefon</Label>
+                        <Label Name="label4" Content="Label3" Visibility="Hidden" HorizontalAlignment="Right" Margin="5"></Label>
+                        <Label Name="label5" Content="Label3" Visibility="Hidden" HorizontalAlignment="Right" Margin="5"></Label>
+                        <Label Name="label6" Content="Label3" Visibility="Hidden" HorizontalAlignment="Right" Margin="5"></Label>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1">
+                        <TextBox Name="tbimie" Margin="5,9"></TextBox>
+                        <TextBox Name="tbnazwisko" Margin="5,9"></TextBox>
+                        <TextBox Name="tbtelefon" Margin="5,9"></TextBox>
+                        <RadioButton Name="rbstudent" Margin="5" GroupName="typ" Checked="rbstudent_Checked">Student</RadioButton>
+                        <RadioButton Name="rbpracownik" Margin="5" GroupName="typ" Checked="rbpracownik_Checked">Pracownik</RadioButton>
+                        <ComboBox Margin="5,7" Name="cb4" Visibility="Hidden"></ComboBox>
+                        <TextBox Name="tb5" Visibility="Hidden" Margin="5,9"></TextBox>
+                        <TextBox Name="tb6" Visibility="Hidden" Margin="5,9"></TextBox>
+                    </StackPanel>
+                    <Button Grid.Column="2" Content="Dodaj" Height="40" Margin="25" Click="Button_Click"></Button>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Przeglądaj osoby">
+                <TabControl Margin="5">
+                    <TabItem Header="Studenci">
+
+                    </TabItem>
+                    <TabItem Header="Pracownicy">
+                        <DataGrid ItemsSource="{Binding ListaPracownikow}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn x:Name="Imię" Header="Tresc" Binding="{Binding Imie}"></DataGridTextColumn>
+                                <DataGridTextColumn x:Name="Nazwisko" Header="Tresc" Binding="{Binding Nazwisko}"></DataGridTextColumn>
+                                
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </TabItem>
+                </TabControl>
+            </TabItem>
+
+        </TabControl>
     </Grid>
 </Window>
