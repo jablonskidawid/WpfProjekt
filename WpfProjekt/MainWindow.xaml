@@ -46,19 +46,25 @@
                     <TabControl Margin="5,5,5,30">
 
                         <TabItem Header="Studenci">
-                            <DataGrid Name="dgstudenci" AutoGenerateColumns="False">
+                            <DataGrid Name="dgStudenci" AutoGenerateColumns="False">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Width="120" Header="Nazwisko" Binding="{Binding Nazwisko}"/>
                                     <DataGridTextColumn Width="60" Header="Imie" Binding="{Binding Imie}"/>
+                                    <DataGridTextColumn Width="120" Header="Nazwisko" Binding="{Binding Nazwisko}"/>
                                     <DataGridTextColumn Width="60" Header="Telefon" Binding="{Binding Telefon}"/>
-                                    <DataGridComboBoxColumn Width="100" Header="Kierunek"></DataGridComboBoxColumn>
+                                    <DataGridComboBoxColumn x:Name="cbKierunek" SelectedItemBinding="{Binding Kierunek}" Width="100" Header="Kierunek"></DataGridComboBoxColumn>
                                     <DataGridTextColumn Width="60" Header="Index" Binding="{Binding Index}"/>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </TabItem>
                         <TabItem Header="Pracownicy">
-                            <DataGrid Name="dgpracownicy">
-
+                            <DataGrid Name="dgPracownicy" AutoGenerateColumns="False">
+                                <DataGrid.Columns>
+                                <DataGridTextColumn Width="120" Header="Tytuł" Binding="{Binding Tytul}"/>
+                                <DataGridTextColumn Width="120" Header="Nazwisko" Binding="{Binding Nazwisko}"/>
+                                <DataGridTextColumn Width="60" Header="Imie" Binding="{Binding Imie}"/>
+                                <DataGridComboBoxColumn x:Name="cbStanowisko" SelectedItemBinding="{Binding Stanowisko}" Width="100" Header="Stanowisko"></DataGridComboBoxColumn>
+                                <DataGridTextColumn Width="60" Header="Pensja" Binding="{Binding Pensja}"/>
+                                </DataGrid.Columns>
                             </DataGrid>
                         </TabItem>
                     </TabControl>

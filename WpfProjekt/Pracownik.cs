@@ -10,9 +10,9 @@ namespace WpfProjekt
     
     public class Pracownik : Osoba, IPrintable
     {
+        public string Tytul { get; set; }
         public Stanowisko Stanowisko { get; set; }
         public double Pensja { get; set; }
-        public string Tytul { get; set; }
         public Pracownik() { }
         public Pracownik(string imie, string nazwisko, int telefon, string tytul, Stanowisko stanowisko, double pensja)
         {

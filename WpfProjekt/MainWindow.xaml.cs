@@ -24,14 +24,16 @@ namespace WpfProjekt
     public partial class MainWindow : Window
     {
         public enum Stanowisko { Dyrektor, Wykładowca, Prac_Techniczny, Administracja, Dziekanat, Księgowość }
-        public enum KierunekEnum { Filozofia, Matematyka, Architektura, Mechanika }
+        public enum Kierunek { Filozofia, Matematyka, Architektura, Mechanika }
         Listy listy = new Listy();
 
         public MainWindow()
         {
             InitializeComponent();
-            dgstudenci.ItemsSource = listy.ListaStudentow;
-            dgpracownicy.ItemsSource = listy.ListaPracownikow;
+            dgPracownicy.ItemsSource = listy.ListaPracownikow;
+            dgStudenci.ItemsSource = listy.ListaStudentow;
+            cbKierunek.ItemsSource = Enum.GetValues(typeof(Kierunek));
+            cbStanowisko.ItemsSource = Enum.GetValues(typeof(Stanowisko));
         }
 
         private void rbpracownik_Checked(object sender, RoutedEventArgs e)
@@ -60,7 +62,7 @@ namespace WpfProjekt
             label5.Content = "Numer indeksu";
             label6.Visibility = Visibility.Hidden;
             tb6.Visibility = Visibility.Hidden;
-            cb4.ItemsSource = Enum.GetValues(typeof(KierunekEnum));
+            cb4.ItemsSource = Enum.GetValues(typeof(Kierunek));
         }
 
         private void Dodaj_Click(object sender, RoutedEventArgs e)
@@ -113,7 +115,7 @@ namespace WpfProjekt
                     string imie = tbimie.Text;
                     string nazwisko = tbnazwisko.Text;
                     int telefon = Convert.ToInt32(tbtelefon.Text);
-                    KierunekEnum kierunek = (KierunekEnum)Enum.Parse(typeof(KierunekEnum), cb4.Text);
+                    Kierunek kierunek = (Kierunek)Enum.Parse(typeof(Kierunek), cb4.Text);
                     int index = Convert.ToInt32(tb5.Text);
                     Student student = new Student(imie, nazwisko, telefon, kierunek, index);
                     listy.Dodaj(student);

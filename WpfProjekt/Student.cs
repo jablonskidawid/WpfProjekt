@@ -10,9 +10,9 @@ namespace WpfProjekt
     public class Student : Osoba, IPrintable
     {
         public int Index { get; set; }
-        public KierunekEnum Kierunek { get; set; }
+        public Kierunek Kierunek { get; set; }
         public Student() { }
-        public Student(string imie, string nazwisko, int telefon, KierunekEnum kierunek, int index)
+        public Student(string imie, string nazwisko, int telefon, Kierunek kierunek, int index)
         {
             Imie = imie;
             Nazwisko = nazwisko;
