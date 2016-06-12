@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:WpfProjekt"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="525">
+    <Window.Resources>
+        <CollectionViewSource x:Key="Kierunek" Source="{Binding Kierunek}"></CollectionViewSource>
+    </Window.Resources>
     <Grid>
         <TabControl>
             <TabItem Header="Dodaj nową osobę">
@@ -33,24 +36,40 @@
                         <TextBox Name="tb5" Visibility="Hidden" Margin="5,9"></TextBox>
                         <TextBox Name="tb6" Visibility="Hidden" Margin="5,9"></TextBox>
                     </StackPanel>
-                    <Button Grid.Column="2" Content="Dodaj" Height="40" Margin="25" Click="Button_Click"></Button>
+                    <StackPanel Grid.Column="2">
+                        <Button Content="Wyczyść pola" Height="40" Margin="20" Click="Clear_Click"></Button>
+                        <Button Content="Dodaj osobę" Height="40" Margin="20" Click="Dodaj_Click"></Button>
+                    </StackPanel>
+
+                        <Button Grid.Column="2" Content="Wyjście" VerticalAlignment="Bottom" Height="40" Margin="20" Click="Koniec_Click"></Button>
                 </Grid>
             </TabItem>
             <TabItem Header="Przeglądaj osoby">
-                <TabControl Margin="5">
-                    <TabItem Header="Studenci">
+                <Grid>
+                    <TabControl Margin="5,5,5,30">
 
-                    </TabItem>
-                    <TabItem Header="Pracownicy">
-                        <DataGrid ItemsSource="{Binding ListaPracownikow}">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn x:Name="Imię" Header="Tresc" Binding="{Binding Imie}"></DataGridTextColumn>
-                                <DataGridTextColumn x:Name="Nazwisko" Header="Tresc" Binding="{Binding Nazwisko}"></DataGridTextColumn>
-                                
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </TabItem>
-                </TabControl>
+                        <TabItem Header="Studenci">
+                            <DataGrid Name="dgstudenci" ItemsSource="{Binding ListaStudentow}" AutoGenerateColumns="False">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Width="120" Header="Nazwisko" Binding="{Binding Nazwisko}"/>
+                                    <DataGridTextColumn Width="60" Header="Imie" Binding="{Binding Imie}"/>
+                                    <DataGridTextColumn Width="60" Header="Telefon" Binding="{Binding Telefon}"/>
+                                    <DataGridComboBoxColumn Width="100" Header="Kierunek" ItemsSource="{Binding Source={StaticResource Kierunek}}"></DataGridComboBoxColumn>
+                                    <DataGridTextColumn Width="60" Header="Index" Binding="{Binding Index}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+
+                        </TabItem>
+                        <TabItem Header="Pracownicy">
+                            <DataGrid Name="dgpracownicy" ItemsSource="{Binding ListaPracownikow}">
+
+                            </DataGrid>
+                        </TabItem>
+                    </TabControl>
+                    <Button Margin="5,0,400,5" Name="Zapisz" Width="90" VerticalAlignment="Bottom" Click="Zapisz_Click">Zapisz do pliku</Button>
+                    <Button Margin="115,0,250,5" Width="90" Name="Wczytaj" VerticalAlignment="Bottom" Click="Wczytaj_Click">Wczytaj z pliku</Button>
+                </Grid>
             </TabItem>
 
         </TabControl>

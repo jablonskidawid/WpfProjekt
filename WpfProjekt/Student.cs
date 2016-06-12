@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace WpfProjekt
 {
-    public enum Kierunek { Filozofia, Matematyka, Architektura, Mechanika }
+    public enum KierunekEnum { Filozofia, Matematyka, Architektura, Mechanika }
     public class Student : Osoba, IComparable
     {
         public int Index { get; set; }
-        public Kierunek Kierunek { get; set; }
+        public KierunekEnum Kierunek { get; set; }
         public Student() { }
-        public Student(string imie, string nazwisko, int telefon, Kierunek kierunek, int index)
+        public Student(string imie, string nazwisko, int telefon, KierunekEnum kierunek, int index)
         {
             Imie = imie;
             Nazwisko = nazwisko;

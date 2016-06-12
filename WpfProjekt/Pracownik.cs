@@ -22,7 +22,10 @@ namespace WpfProjekt
             Pensja = pensja;
             Telefon = telefon;
         }
-
+      //  public int compareTo(object obj)
+      //  {
+            
+     //   }
 
     }
 }
