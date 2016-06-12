@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace WpfProjekt
 {
-    public enum Stanowisko { Dyrektor, Wykładowca, Prac_Techniczny, Administracja, Dziekanat, Księgowość}
-    public class Pracownik:Osoba
+    public enum Stanowisko { Dyrektor, Wykładowca, Prac_Techniczny, Administracja, Dziekanat, Księgowość }
+    public class Pracownik : Osoba
     {
         public Stanowisko Stanowisko { get; set; }
         public double Pensja { get; set; }
@@ -22,10 +22,5 @@ namespace WpfProjekt
             Pensja = pensja;
             Telefon = telefon;
         }
-      //  public int compareTo(object obj)
-      //  {
-            
-     //   }
-
     }
 }

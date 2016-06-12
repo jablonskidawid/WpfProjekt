@@ -30,8 +30,6 @@ namespace WpfProjekt
             InitializeComponent();
             dgstudenci.DataContext = listy;
             dgpracownicy.DataContext = listy;
-            listy.ListaPracownikow = new ObservableCollection<Pracownik>();
-            listy.ListaStudentow = new ObservableCollection<Student>();
         }
 
         private void rbpracownik_Checked(object sender, RoutedEventArgs e)
@@ -106,7 +104,7 @@ namespace WpfProjekt
                     string tytul = tb5.Text;
                     double pensja = Convert.ToDouble(tb6.Text);
                     Pracownik pracownik = new Pracownik(imie, nazwisko, telefon, tytul, stanowisko, pensja);
-                    listy.ListaPracownikow.Add(pracownik);
+                    listy.Dodaj(pracownik);
                 }
                 else if (rbstudent.IsChecked == true)
                 {
@@ -116,10 +114,10 @@ namespace WpfProjekt
                     KierunekEnum kierunek = (KierunekEnum)Enum.Parse(typeof(KierunekEnum), cb4.Text);
                     int index = Convert.ToInt32(tb5.Text);
                     Student student = new Student(imie, nazwisko, telefon, kierunek, index);
-                    listy.ListaStudentow.Add(student);
+                    listy.Dodaj(student);
                 }
 
-
+                Czysc();
             }
             catch (FormatException)
             {
@@ -188,16 +186,20 @@ namespace WpfProjekt
                 Listy tmpList = (Listy)deserializer.Deserialize(sr);
                 foreach (var item in tmpList.ListaPracownikow)
                 {
-                    listy.ListaPracownikow.Add(item);
+                    listy.Dodaj(item);
                 }
                 foreach (var item in tmpList.ListaStudentow)
                 {
-                    listy.ListaStudentow.Add(item);
+                    listy.Dodaj(item);
                 }
             }
         }
 
         private void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            Czysc();
+        }
+        private void Czysc()
         {
             tbimie.Text = "";
             tbnazwisko.Text = "";
@@ -216,4 +218,3 @@ namespace WpfProjekt
         }
     }
 }
-    

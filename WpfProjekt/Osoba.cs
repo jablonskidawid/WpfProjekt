@@ -14,8 +14,8 @@ namespace WpfProjekt
 
         public int CompareTo(object obj)
         {
-            int retVal= Nazwisko.CompareTo(obj);
-            if (retVal==0) return Imie.CompareTo(obj);
+            int retVal = Nazwisko.CompareTo(obj);
+            if (retVal == 0) return Imie.CompareTo(obj);
             return retVal;
         }
     }
