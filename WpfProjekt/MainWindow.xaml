@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfProjekt"
         mc:Ignorable="d"
-        Title="Akademia C# Projekt - Lista osób na uczelni" Height="450" Width="525">
+        Title="Akademia C# Projekt - Lista osób na uczelni" Height="540" Width="720">
     <Grid>
         <TabControl>
             <TabItem Header="Dodaj nową osobę">
@@ -59,11 +59,12 @@
                         <TabItem Header="Pracownicy">
                             <DataGrid Name="dgPracownicy" AutoGenerateColumns="False">
                                 <DataGrid.Columns>
-                                <DataGridTextColumn Width="120" Header="Tytuł" Binding="{Binding Tytul}"/>
-                                <DataGridTextColumn Width="120" Header="Nazwisko" Binding="{Binding Nazwisko}"/>
-                                <DataGridTextColumn Width="60" Header="Imie" Binding="{Binding Imie}"/>
-                                <DataGridComboBoxColumn x:Name="cbStanowisko" SelectedItemBinding="{Binding Stanowisko}" Width="100" Header="Stanowisko"></DataGridComboBoxColumn>
-                                <DataGridTextColumn Width="60" Header="Pensja" Binding="{Binding Pensja}"/>
+                                    <DataGridTextColumn Width="120" Header="Tytuł" Binding="{Binding Tytul}"/>
+                                    <DataGridTextColumn Width="120" Header="Nazwisko" Binding="{Binding Nazwisko}"/>
+                                    <DataGridTextColumn Width="60" Header="Imie" Binding="{Binding Imie}"/>
+                                    <DataGridTextColumn Width="60" Header="Telefon" Binding="{Binding Telefon}"/>
+                                    <DataGridComboBoxColumn x:Name="cbStanowisko" SelectedItemBinding="{Binding Stanowisko}" Width="100" Header="Stanowisko"></DataGridComboBoxColumn>
+                                    <DataGridTextColumn Width="60" Header="Pensja" Binding="{Binding Pensja}"/>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </TabItem>
