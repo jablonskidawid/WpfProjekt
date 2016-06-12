@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static WpfProjekt.MainWindow;
 
 namespace WpfProjekt
 {
-    public enum KierunekEnum { Filozofia, Matematyka, Architektura, Mechanika }
-    public class Student : Osoba, IComparable
+    public class Student : Osoba, IPrintable
     {
         public int Index { get; set; }
         public KierunekEnum Kierunek { get; set; }
@@ -20,10 +20,10 @@ namespace WpfProjekt
             Index = index;
             Telefon = telefon;
         }
-
-        public new int CompareTo(object obj)
+        public string Wypisz()
         {
-            return Index.CompareTo(obj);
+            string retVal = Imie + " " + Nazwisko + "\nNumer indeksu: " + Index + "\nTelefon: " + Telefon + "\n";
+            return retVal;
         }
     }
 }

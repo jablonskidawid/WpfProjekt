@@ -46,24 +46,28 @@
                     <TabControl Margin="5,5,5,30">
 
                         <TabItem Header="Studenci">
-                            <DataGrid Name="dgstudenci" ItemsSource="{Binding ListaStudentow}" AutoGenerateColumns="False">
+                            <DataGrid Name="dgstudenci" AutoGenerateColumns="False">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Width="120" Header="Nazwisko" Binding="{Binding Nazwisko}"/>
                                     <DataGridTextColumn Width="60" Header="Imie" Binding="{Binding Imie}"/>
                                     <DataGridTextColumn Width="60" Header="Telefon" Binding="{Binding Telefon}"/>
-                                    <DataGridComboBoxColumn Width="100" Header="Kierunek" ItemsSource="{Binding Source={StaticResource Kierunek}}"></DataGridComboBoxColumn>
+                                    <DataGridComboBoxColumn Width="100" Header="Kierunek"></DataGridComboBoxColumn>
                                     <DataGridTextColumn Width="60" Header="Index" Binding="{Binding Index}"/>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </TabItem>
                         <TabItem Header="Pracownicy">
-                            <DataGrid Name="dgpracownicy" ItemsSource="{Binding ListaPracownikow}">
+                            <DataGrid Name="dgpracownicy">
 
                             </DataGrid>
                         </TabItem>
                     </TabControl>
-                    <Button Margin="5,0,400,5" Name="Zapisz" Width="90" VerticalAlignment="Bottom" Click="Zapisz_Click">Zapisz do pliku</Button>
-                    <Button Margin="115,0,250,5" Width="90" Name="Wczytaj" VerticalAlignment="Bottom" Click="Wczytaj_Click">Wczytaj z pliku</Button>
+                    <StackPanel VerticalAlignment="Bottom" Margin="5,0" Orientation="Horizontal">
+                        <Button Margin="10,5"  Name="Zapisz" Width="90" VerticalAlignment="Bottom" Click="Zapisz_Click">Zapisz do XML</Button>
+                        <Button Margin="10,5" Width="90" Name="Wczytaj" VerticalAlignment="Bottom" Click="Wczytaj_Click">Wczytaj z XML</Button>
+                        <Button Margin="10,5" Width="120" Name="ExportStudentow" VerticalAlignment="Bottom" Click="ExportStudentow_Click">Exportuj Studentów</Button>
+                        <Button  Margin="10,5" Width="120" Name="ExportPracownikow" VerticalAlignment="Bottom" Click="ExportPracownikow_Click">Exportuj Pracowników</Button>
+                    </StackPanel>
                 </Grid>
             </TabItem>
 

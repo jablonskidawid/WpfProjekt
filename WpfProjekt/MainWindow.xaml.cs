@@ -23,13 +23,15 @@ namespace WpfProjekt
     /// </summary>
     public partial class MainWindow : Window
     {
+        public enum Stanowisko { Dyrektor, Wykładowca, Prac_Techniczny, Administracja, Dziekanat, Księgowość }
+        public enum KierunekEnum { Filozofia, Matematyka, Architektura, Mechanika }
         Listy listy = new Listy();
 
         public MainWindow()
         {
             InitializeComponent();
-            dgstudenci.DataContext = listy;
-            dgpracownicy.DataContext = listy;
+            dgstudenci.ItemsSource = listy.ListaStudentow;
+            dgpracownicy.ItemsSource = listy.ListaPracownikow;
         }
 
         private void rbpracownik_Checked(object sender, RoutedEventArgs e)
@@ -215,6 +217,50 @@ namespace WpfProjekt
             tb5.Visibility = Visibility.Hidden;
             label6.Visibility = Visibility.Hidden;
             tb6.Visibility = Visibility.Hidden;
+        }
+
+        private void ExportStudentow_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.FileName = "Studenci";
+            dlg.DefaultExt = ".txt";
+            dlg.Filter = "Pliki txt (.txt)|*.txt";
+            Nullable<bool> result = dlg.ShowDialog();
+            if (result == true)
+            {
+                string filePath = dlg.FileName;
+
+                using (var sw = new StreamWriter(filePath))
+                {
+                    foreach (var item in listy.ListaStudentow)
+                    {
+                        sw.WriteLine(item.Wypisz());
+                    }
+
+                }
+            }
+
+        }
+        private void ExportPracownikow_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.FileName = "Pracownicy";
+            dlg.DefaultExt = ".txt";
+            dlg.Filter = "Pliki txt (.txt)|*.txt";
+            Nullable<bool> result = dlg.ShowDialog();
+            if (result == true)
+            {
+                string filePath = dlg.FileName;
+
+                using (var sw = new StreamWriter(filePath))
+                {
+                    foreach (var item in listy.ListaPracownikow)
+                    {
+                        sw.WriteLine(item.Wypisz());
+                    }
+
+                }
+            }
         }
     }
 }

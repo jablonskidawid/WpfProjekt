@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static WpfProjekt.MainWindow;
 
 namespace WpfProjekt
 {
-    public enum Stanowisko { Dyrektor, Wykładowca, Prac_Techniczny, Administracja, Dziekanat, Księgowość }
-    public class Pracownik : Osoba
+    
+    public class Pracownik : Osoba, IPrintable
     {
         public Stanowisko Stanowisko { get; set; }
         public double Pensja { get; set; }
@@ -21,6 +22,12 @@ namespace WpfProjekt
             Stanowisko = stanowisko;
             Pensja = pensja;
             Telefon = telefon;
+        }
+
+        public string Wypisz()
+        {
+            string retVal = Stanowisko + " " + Tytul + " " + Imie + " " + Nazwisko + "\nTelefon: " + Telefon + "\n";
+            return retVal;
         }
     }
 }

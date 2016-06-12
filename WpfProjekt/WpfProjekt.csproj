@@ -70,6 +70,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="IPrintable.cs" />
     <Compile Include="Listy.cs" />
     <Compile Include="Pracownik.cs" />
     <Compile Include="Student.cs" />
