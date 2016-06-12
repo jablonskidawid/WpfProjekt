@@ -7,7 +7,6 @@ using static WpfProjekt.MainWindow;
 
 namespace WpfProjekt
 {
-    
     public class Pracownik : Osoba, IPrintable
     {
         public string Tytul { get; set; }
@@ -23,7 +22,6 @@ namespace WpfProjekt
             Pensja = pensja;
             Telefon = telefon;
         }
-
         public string Wypisz()
         {
             string retVal = Stanowisko + " " + Tytul + " " + Imie + " " + Nazwisko + "\nTelefon: " + Telefon + "\n";

@@ -18,9 +18,6 @@ using System.Xml.Serialization;
 
 namespace WpfProjekt
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public enum Stanowisko { Dyrektor, Wykładowca, Prac_Techniczny, Administracja, Dziekanat, Księgowość }
@@ -34,10 +31,19 @@ namespace WpfProjekt
             dgStudenci.ItemsSource = listy.ListaStudentow;
             cbKierunek.ItemsSource = Enum.GetValues(typeof(Kierunek));
             cbStanowisko.ItemsSource = Enum.GetValues(typeof(Stanowisko));
+            cb4.Visibility = Visibility.Hidden;
+            label4.Visibility = Visibility.Hidden;
+            label5.Visibility = Visibility.Hidden;
+            tb5.Visibility = Visibility.Hidden;
+            label6.Visibility = Visibility.Hidden;
+            tb6.Visibility = Visibility.Hidden;
         }
 
         private void rbpracownik_Checked(object sender, RoutedEventArgs e)
         {
+            tb5.Text = "";
+            tb6.Text = "";
+            cb4.Text = "";
             cb4.Visibility = Visibility.Visible;
             label4.Visibility = Visibility.Visible;
             label5.Visibility = Visibility.Visible;
@@ -53,6 +59,9 @@ namespace WpfProjekt
 
         private void rbstudent_Checked(object sender, RoutedEventArgs e)
         {
+            tb5.Text = "";
+            tb6.Text = "";
+            cb4.Text = "";
             cb4.Visibility = Visibility.Visible;
             label4.Visibility = Visibility.Visible;
             label5.Visibility = Visibility.Visible;
@@ -94,9 +103,9 @@ namespace WpfProjekt
                     Exception pusteKierunek = new Exception("Musisz wybrać Kierunek i podać numer indeksu!");
                     throw pusteKierunek;
                 }
-                if ((rbpracownik.IsChecked == true) && (String.IsNullOrEmpty(tb6.Text)))
+                if ((rbpracownik.IsChecked == true) && ((String.IsNullOrEmpty(tb6.Text))))
                 {
-                    Exception pusteIndex = new Exception("Musisz podać Numer indeksu!");
+                    Exception pusteIndex = new Exception("Musisz podać pensję!");
                     throw pusteIndex;
                 }
                 if (rbpracownik.IsChecked == true)
@@ -109,6 +118,7 @@ namespace WpfProjekt
                     double pensja = Convert.ToDouble(tb6.Text);
                     Pracownik pracownik = new Pracownik(imie, nazwisko, telefon, tytul, stanowisko, pensja);
                     listy.Dodaj(pracownik);
+                    MessageBox.Show("Dodano do listy pracowników");
                 }
                 else if (rbstudent.IsChecked == true)
                 {
@@ -119,13 +129,16 @@ namespace WpfProjekt
                     int index = Convert.ToInt32(tb5.Text);
                     Student student = new Student(imie, nazwisko, telefon, kierunek, index);
                     listy.Dodaj(student);
+                    MessageBox.Show("Dodano do listy studentów");
                 }
-
                 Czysc();
             }
             catch (FormatException)
             {
-                MessageBox.Show("Podaj poprawny numer telefonu");
+                if (rbstudent.IsChecked == true)
+                    MessageBox.Show("Podaj poprawny numer telefonu i indeksu");
+                if (rbpracownik.IsChecked == true)
+                    MessageBox.Show("Podaj poprawny numer telefonu i pensję");
             }
             catch (Exception ex)
             {
@@ -141,7 +154,7 @@ namespace WpfProjekt
         private void Zapisz_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-            dlg.FileName = "Osoby"; //domyslna nazwa pliku
+            dlg.FileName = "Osoby";
             dlg.DefaultExt = ".xml";
             dlg.Filter = "XML documents (.xml)|*.xml";
             Nullable<bool> result = dlg.ShowDialog();
@@ -184,19 +197,27 @@ namespace WpfProjekt
 
         private void XmlFileToListKlienci(string filename)
         {
-            using (var sr = new StreamReader(filename))
+            try
             {
-                var deserializer = new XmlSerializer(typeof(Listy));
-                Listy tmpList = (Listy)deserializer.Deserialize(sr);
-                foreach (var item in tmpList.ListaPracownikow)
+                using (var sr = new StreamReader(filename))
                 {
-                    listy.Dodaj(item);
-                }
-                foreach (var item in tmpList.ListaStudentow)
-                {
-                    listy.Dodaj(item);
+                    var deserializer = new XmlSerializer(typeof(Listy));
+                    Listy tmpList = (Listy)deserializer.Deserialize(sr);
+                    foreach (var item in tmpList.ListaPracownikow)
+                    {
+                        listy.Dodaj(item);
+                    }
+                    foreach (var item in tmpList.ListaStudentow)
+                    {
+                        listy.Dodaj(item);
+                    }
                 }
             }
+            catch (Exception)
+            {
+                MessageBox.Show("Niepoprawne dane w pliku!");
+            }
+
         }
 
         private void Clear_Click(object sender, RoutedEventArgs e)
@@ -220,7 +241,6 @@ namespace WpfProjekt
             label6.Visibility = Visibility.Hidden;
             tb6.Visibility = Visibility.Hidden;
         }
-
         private void ExportStudentow_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
@@ -238,10 +258,8 @@ namespace WpfProjekt
                     {
                         sw.WriteLine(item.Wypisz());
                     }
-
                 }
             }
-
         }
         private void ExportPracownikow_Click(object sender, RoutedEventArgs e)
         {
@@ -253,14 +271,12 @@ namespace WpfProjekt
             if (result == true)
             {
                 string filePath = dlg.FileName;
-
                 using (var sw = new StreamWriter(filePath))
                 {
                     foreach (var item in listy.ListaPracownikow)
                     {
                         sw.WriteLine(item.Wypisz());
                     }
-
                 }
             }
         }

@@ -10,8 +10,4 @@ namespace WpfProjekt
     {
         string Wypisz();
     }
-
-
-
-
 }

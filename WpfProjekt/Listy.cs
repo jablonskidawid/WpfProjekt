@@ -11,7 +11,6 @@ namespace WpfProjekt
     {
         public ObservableCollection<Pracownik> ListaPracownikow { get; set; }
         public ObservableCollection<Student> ListaStudentow { get; set; }
-
         public Listy()
         {
             ListaPracownikow = new ObservableCollection<Pracownik>();
