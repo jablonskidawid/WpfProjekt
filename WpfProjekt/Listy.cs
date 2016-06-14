@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace WpfProjekt
 {
+    /*
+     * Klasa, która reprezentuje obiekty przechowujące studentów i pracowników w listach.
+     * Wykorzystano tutaj kolekcje generyczne.
+     */
     public class Listy
     {
         public ObservableCollection<Pracownik> ListaPracownikow { get; set; }
@@ -16,6 +20,11 @@ namespace WpfProjekt
             ListaPracownikow = new ObservableCollection<Pracownik>();
             ListaStudentow = new ObservableCollection<Student>();
         }
+
+
+        /*
+         * Zastosowanie polimorfizmu:
+         */
         public void Dodaj(Student student)
         {
             ListaStudentow.Add(student);

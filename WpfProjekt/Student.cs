@@ -20,6 +20,9 @@ namespace WpfProjekt
             Index = index;
             Telefon = telefon;
         }
+        /*
+         * Metoda interfejsu
+         */
         public string Wypisz()
         {
             string retVal = Imie + " " + Nazwisko + "\nNumer indeksu: " + Index + "\nTelefon: " + Telefon + "\n";

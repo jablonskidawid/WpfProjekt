@@ -38,7 +38,9 @@ namespace WpfProjekt
             label6.Visibility = Visibility.Hidden;
             tb6.Visibility = Visibility.Hidden;
         }
-
+        /*
+         * Zaznaczenie RadioButtona "pracownik" przy dodawaniu nowej osoby
+         */
         private void rbpracownik_Checked(object sender, RoutedEventArgs e)
         {
             tb5.Text = "";
@@ -56,7 +58,9 @@ namespace WpfProjekt
             cb4.ItemsSource = Enum.GetValues(typeof(Stanowisko));
 
         }
-
+        /*
+         * Zaznaczenie RadioButtona "student" przy dodawaniu nowej osoby
+         */
         private void rbstudent_Checked(object sender, RoutedEventArgs e)
         {
             tb5.Text = "";
@@ -73,7 +77,10 @@ namespace WpfProjekt
             tb6.Visibility = Visibility.Hidden;
             cb4.ItemsSource = Enum.GetValues(typeof(Kierunek));
         }
-
+        /*
+         * Wciśniecie przycisku "dodaj nową osobę" w zakładce dodawania
+         * Osbługa różnych wyjątków
+         */
         private void Dodaj_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -150,7 +157,9 @@ namespace WpfProjekt
         {
             System.Environment.Exit(0);
         }
-
+        /*
+         * Kliknięcie przycisku "zapisz do xml"
+         */
         private void Zapisz_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
@@ -161,10 +170,13 @@ namespace WpfProjekt
             if (result == true)
             {
                 string filePath = dlg.FileName;
-                ListToXmlFileKlienci(filePath);
+                ListyDoPliku(filePath);
             }
         }
-        private void ListToXmlFileKlienci(string filePath)
+        /*
+         * Serializacja danych do XML
+         */
+        private void ListyDoPliku(string filePath)
         {
             using (var sw = new StreamWriter(filePath))
             {
@@ -172,7 +184,9 @@ namespace WpfProjekt
                 serializer.Serialize(sw, listy);
             }
         }
-
+        /*
+         * Kliknięcie przycisku "wczytaj z xml"
+         */
         private void Wczytaj_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
@@ -187,15 +201,17 @@ namespace WpfProjekt
             }
             if (File.Exists(filename))
             {
-                XmlFileToListKlienci(filename);
+                ZPlikuDoListy(filename);
             }
             else
             {
                 MessageBox.Show("Nie ma takiego pliku!");
             }
         }
-
-        private void XmlFileToListKlienci(string filename)
+        /*
+         * Deserializacja danych z XML
+         */
+        private void ZPlikuDoListy(string filename)
         {
             try
             {
@@ -219,7 +235,10 @@ namespace WpfProjekt
             }
 
         }
-
+        /*
+         * Kliknięcie przycisku "wyczysc pola" w zakładce dodawania
+         * Czyszczenie pól
+         */
         private void Clear_Click(object sender, RoutedEventArgs e)
         {
             Czysc();
@@ -241,6 +260,9 @@ namespace WpfProjekt
             label6.Visibility = Visibility.Hidden;
             tb6.Visibility = Visibility.Hidden;
         }
+        /*
+         * Kliknięcie przycisku "export studentow do txt"
+         */
         private void ExportStudentow_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
@@ -261,6 +283,9 @@ namespace WpfProjekt
                 }
             }
         }
+        /*
+         * Kliknięcie przycisku "export studentow do txt"
+         */
         private void ExportPracownikow_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();

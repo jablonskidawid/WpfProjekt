@@ -22,6 +22,9 @@ namespace WpfProjekt
             Pensja = pensja;
             Telefon = telefon;
         }
+        /*
+         * Metoda interfejsu
+         */
         public string Wypisz()
         {
             string retVal = Stanowisko + " " + Tytul + " " + Imie + " " + Nazwisko + "\nTelefon: " + Telefon + "\n";

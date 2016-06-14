@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace WpfProjekt
 {
+    /*
+     * Abstrakcyjna klasa, z której dziedziczą student i pracownik
+     */
     public abstract class Osoba
     {
         public virtual string Nazwisko { get; set; }
